@@ -46,11 +46,17 @@ export function updateLoginDependentComponents() {
   const loggedIn = sessionStorage.getItem("token")
   const loggedInAs = sessionStorage.getItem("logged-in-as")
   const username = sessionStorage.getItem("username")
-
+  // There's (secure) validation of priveleges at the backend
+  const editDeleteBtns = document.querySelectorAll("#riders .edit-delete")
+  if (editDeleteBtns) {
+    const display = (loggedInAs === "USER" || loggedInAs === "ADMIN") ? "flex" : "none"
+    console.log(display)
+    Array.from(editDeleteBtns).forEach(e=>e.style.display=display)
+  }
   document.getElementById("login").style.display = loggedIn ? "none" : "block"
+  document.getElementById("add-edit-rider").style.display = loggedIn ? "block" : "none"
   document.getElementById("logout").style.display = loggedIn ? "block" : "none"
   document.getElementById("register").style.display = loggedIn ? "none" : "block"
   document.getElementById("user-info").style.display = loggedIn ? "inline" : "none"
   document.getElementById("user-info").innerText = loggedIn ? `Logged on with username ${username} as ${loggedInAs}` : ""
-  document.getElementById("rider-search").style.display = loggedIn ? "flex" : "none"
 }

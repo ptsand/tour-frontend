@@ -30,7 +30,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/list-riders" data-navigo>List riders</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="add-edit-rider">
               <a class="nav-link" href="/add-edit-rider" data-navigo>Add rider</a>
             </li>
             <li class="nav-item">
@@ -44,8 +44,8 @@
             </li>
           </ul>
           <!-- TODO: remove search if no time to implement it -->
-          <div id="rider-search">
-            <input id="rider-query" class="form-control me-2" type="search" placeholder="Enter Rider" aria-label="Search">
+          <div id="rider-search" class="d-flex">
+            <input id="rider-query" class="form-control me-2" type="search" placeholder="Rider name" aria-label="Search">
             <button id="search-result" class="btn btn-outline-success">Search</button>
           </div>
         </div>

@@ -36,7 +36,7 @@ window.addEventListener("load", async () => {
     router.updatePageLinks()
     router.on("/delete-rider", async match =>{
       await removeRider(match)
-      // turn off the handler for removed Rider
+      // turn off the handler for removed rider
       router.off(`/delete-rider?id=${match.params.id}`)
     })
   })
