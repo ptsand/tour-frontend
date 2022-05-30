@@ -1,0 +1,23 @@
+<template>
+    <div class="d-flex align-items-center" style="height: 80vh;">
+        <div class="bg-light px-4 py-2 mx-auto text-center border" style="min-width: 30vw;">
+            <h3 class="mb-3">Register</h3>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="username" value="testUser">
+                <label for="username">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="password" value="testPassword!">
+                <label for="password">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" value="mail@test.dev">
+                <label for="email">Email</label>
+            </div>
+            <div id="message"></div>
+            <div>
+                <button id="btn-submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,24 @@
+/* Global CSS file */
+
+#user-info {
+    display: none;
+    border-bottom-right-radius: 10px;
+}
+/* mobile first */
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* 2 columns on small screens */
+    grid-gap: 20px;
+}
+/* tablets */
+@media (min-width: 768px) {
+    .grid-wrapper {
+        grid-template-columns: repeat(3, auto);
+    }
+}
+/* desktops */
+@media (min-width: 992px) {
+    .grid-wrapper {
+        grid-template-columns: repeat(4, auto);
+    }
+}
