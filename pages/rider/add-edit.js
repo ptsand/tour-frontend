@@ -17,7 +17,6 @@ export const setupAddEditRider = async match=>{
             if (!(prop.toLowerCase().includes("id") || prop === "teamName")) eById(`${prop}`).value = rider[prop]
         }
         eById("teamId").innerHTML = teamOptions(teams, rider.teamId)
-        // console.log(encode(teamOptions(teams, rider.teamId)))
     } catch (err) {
         displayMsg(err.message, "danger")
     }

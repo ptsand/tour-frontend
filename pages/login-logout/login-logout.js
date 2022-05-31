@@ -49,8 +49,7 @@ export function updateLoginDependentComponents() {
   // There's (secure) validation of priveleges at the backend
   const editDeleteBtns = document.querySelectorAll("#riders .edit-delete")
   if (editDeleteBtns) {
-    const display = (loggedInAs === "USER" || loggedInAs === "ADMIN") ? "flex" : "none"
-    console.log(display)
+    const display = (loggedInAs === "USER" || loggedInAs === "ADMIN") ? "block" : "none"
     Array.from(editDeleteBtns).forEach(e=>e.style.display=display)
   }
   document.getElementById("login").style.display = loggedIn ? "none" : "block"

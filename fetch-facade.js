@@ -2,7 +2,7 @@ const API = "http://localhost:8080/api"
 
 export const loginRequest = async (user) => await fetch(`${API}/auth/login`, makeOptions("post", user)).then(res => handleErrors(res))
 export const registerRequest = async (person) => await fetch(`${API}/persons`, makeOptions("post", person)).then(res => handleErrors(res))
-// the server perfoms authorization to prevent malicious requests for other users information
+// NB: the server perfoms authorization to prevent malicious requests for other users information
 export const getPerson = async (username) => await fetch(`${API}/persons/${username}`, makeOptions("get", null, true)).then(res => handleErrors(res))
 
 export const getTeams = async () => await fetch(`${API}/teams`, makeOptions("get")).then(res => handleErrors(res))

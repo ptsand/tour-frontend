@@ -16,7 +16,6 @@ window.addEventListener("load", async () => {
   const templateHome = await loadTemplate("./pages/home/home.html")
   const templateRegister = await loadTemplate("./pages/register/register.html")
   const templateRiderCards = await loadTemplate("./pages/rider/list-delete.html")
-  const templateRiderTable = await loadTemplate("./pages/rider/list-delete-table.html")
   const templateAddEditRider = await loadTemplate("./pages/rider/add-edit.html")
 
   adjustForMissingHash()

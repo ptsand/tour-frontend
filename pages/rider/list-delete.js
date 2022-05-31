@@ -52,15 +52,18 @@ export const removeRider = async match=>{
 }
 
 const riderCards = riders=>
-    riders.map(e=>`
-            <div id="rider-${e.id}" class="card">
+    riders.map(r=>`
+            <div id="rider-${r.id}" class="card text-center">
+            <div class="card-header">Total time: ${r.totalTimeMs} ms</div>
             <div class="card-body d-flex flex-column">
-                <h5 class="card-title">${e.name}</h5>
-                <p class="card-text">${e.teamName}</p>
-                <p class="card-text">Total time: ${e.totalTimeMs} ms</p>
-                <div class="edit-delete justify-content-between mt-auto">
-                <a href="/add-edit-rider?id=${e.id}" class="btn btn-primary" data-navigo>Edit</a>
-                <a href="/delete-rider?id=${e.id}" class="btn btn-danger" data-navigo data-navigo-options="updateBrowserURL:false">Delete</a>
+                <h5 class="card-title">${r.name}</h5>
+                <p class="card-text">${r.teamName}</p>
+                <div>Mountain points: ${r.mountainPoints}</div>
+                <p class="card-text">Sprint points: ${r.sprintPoints}</p>
+                <p class="card-text">${r.country}</p>
+                <div class="edit-delete mt-auto">
+                <a href="/add-edit-rider?id=${r.id}" class="btn btn-primary btn-sm" data-navigo>Edit</a>
+                <a href="/delete-rider?id=${r.id}" class="btn btn-danger btn-sm" data-navigo data-navigo-options="updateBrowserURL:false">Delete</a>
                 </div>
             </div>
             </div>
