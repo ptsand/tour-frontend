@@ -6,7 +6,7 @@ import {
 
 import { setupLoginHandlers, logout, updateLoginDependentComponents } from "./pages/login-logout/login-logout.js"
 import { setupAddEditRider } from "./pages/rider/add-edit.js"
-import { initialize, removeRider } from "./pages/rider/list-delete.js"
+import { initialize } from "./pages/rider/list-delete.js"
 import { register } from "./pages/register/register.js"
 
 window.addEventListener("load", async () => {
@@ -29,16 +29,8 @@ window.addEventListener("load", async () => {
   })
   .on("/", ()=>renderTemplate(templateHome, "content"))
   .on("/list-riders", async ()=>{
-    // remove delete handlers to avoid multiple delete requests
-    if(router.match("/delete-rider")) router.off("/delete-rider")
     renderTemplate(templateRiderCards, "content")
-    await initialize()
-    router.updatePageLinks()
-    router.on("/delete-rider", async match =>{
-      await removeRider(match)
-      // turn off the handler for removed rider
-      router.off(`/delete-rider?id=${match.params.id}`)
-    })
+    await initialize(router)
   })
   .on("/add-edit-rider", match=>{
     renderTemplate(templateAddEditRider, "content")

@@ -36,8 +36,7 @@ const mapTeams = (teams, riderTeamId)=>teams.map(
 const addEdit = async ()=>{
     let rider = {}
     // rider attributes must match the id's of the formular elements for this to work
-    document.querySelectorAll("#add-edit-form input, #add-edit-form select")
-        .forEach(e => rider[e.id] = encode(e.value))
+    document.querySelectorAll("#add-edit-form input, #add-edit-form select").forEach(e => rider[e.id] = encode(e.value))
     try {
         const resp = _id ? await updateRider(_id, rider) : await addRider(rider) // create if _id is null
         displayMsg("Rider saved","success")

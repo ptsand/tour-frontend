@@ -4,16 +4,27 @@ import { updateLoginDependentComponents } from "../login-logout/login-logout.js"
 
 let _riders;
 
-export const initialize = async () => {
+export const initialize = async (router) => {
+    // remove delete handlers to avoid multiple delete requests
+    if(router.match("/delete-rider")) router.off("/delete-rider")
     try {
-    _riders = await getRiders()
-    renderRiders(riderCards)
-    handleSort(true) // sort descending on first click
-    updateLoginDependentComponents()
+        // check if there's a query in the search field
+        const q = (eById("rider-query").value === "") ? null : eById("rider-query").value
+        _riders = await getRiders(q)
+        renderRiders(riderCards)
+        handleSort(true) // sort descending on first click
+        updateLoginDependentComponents()
     } catch (err) {
         console.log(err.message)
     }
+    router.updatePageLinks()
+    router.on("/delete-rider", async match =>{
+      await removeRider(match)
+      // turn off the handler for removed rider
+      router.off(`/delete-rider?id=${match.params.id}`)
+    })
 }
+    
 
 const handleSort = desc=>{
     eById("btn-sort").onclick = ()=>{
@@ -30,7 +41,7 @@ export const renderRiders = callback=>
 
 export const removeRider = async match=>{
     if (match?.params?.id) {
-        let id = match.params.id
+        const id = match.params.id
         try {
             await deleteRider(id)
             eById(`rider-${id}`).remove()
@@ -54,7 +65,3 @@ const riderCards = riders=>
             </div>
             </div>
             `).join("")
-
-const riderTable = riders=>
-    riders.map(e=>`<tr><th scope="row">${e.id}</th><td>${e.name}</td><td>${e.teamName}</td>
-        <td>${e.teamLetter}</td></tr>`).join("")

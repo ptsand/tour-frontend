@@ -7,7 +7,7 @@ export const getPerson = async (username) => await fetch(`${API}/persons/${usern
 
 export const getTeams = async () => await fetch(`${API}/teams`, makeOptions("get")).then(res => handleErrors(res))
 
-export const getRiders = async () => await fetch(`${API}/riders?size=100`, makeOptions("get")).then(res => handleErrors(res))
+export const getRiders = async (name) => await fetch(`${API}/riders${name ? "/search/"+name : "?size=100"}`, makeOptions("get")).then(res => handleErrors(res))
 export const getRider = async (id) => await fetch(`${API}/riders/${id}`, makeOptions("get")).then(res => handleErrors(res))
 // For admins
 export const addRider = async (rider) => await fetch(`${API}/riders`, makeOptions("post", rider, true)).then(res => handleErrors(res))
@@ -33,12 +33,9 @@ export function makeOptions(method, body, addToken) {
 export async function handleErrors(res) {
     if (!res.ok) {
       const errorResponse = await res.json()
-      // there are a number of different responses from Client4xxException, handleMethodArgumentNotValid
-      // if time, try to make consistent
       const error = new Error(errorResponse.message)
       throw error
     }
-    //console.log(res)
     // this promise fails on HTTP DELETE, if the response body is empty -> no json to parse
     // made backend return "{}" instead of void
     return res.json()
