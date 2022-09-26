@@ -1,5 +1,5 @@
-// const API = "http://localhost:8080/api"
-const API = "https://tour-backend.azurewebsites.net/api"
+//const API = "http://localhost:8080/api"
+const API = "https://tourbackend.herokuapp.com/api"
 
 export const loginRequest = async (user) => await fetch(`${API}/auth/login`, makeOptions("post", user)).then(res => handleErrors(res))
 export const registerRequest = async (person) => await fetch(`${API}/persons`, makeOptions("post", person)).then(res => handleErrors(res))
